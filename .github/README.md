@@ -1,12 +1,1 @@
-```
- _____________
-< Cheatsheets >
- -------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-
-```
-Ref: https://github.com/cheat/cheat
+My [Cheat](https://github.com/cheat/cheat) [sheets](https://github.com/cheat/cheatsheets) offsec related repo.
