@@ -1,4 +1,5 @@
 ---
+syntax: bash
 tags: [ networking ]
 ---
 # Print top 200 most common TCP ports
