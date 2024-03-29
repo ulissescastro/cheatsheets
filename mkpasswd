@@ -1,0 +1,6 @@
+---
+syntax: bash
+tags: [password]
+---
+# SHA-512 hashed version of the password "Password1234" for Unix/Linux systems (but not limited to)
+mkpasswd -m sha-512 Password1234

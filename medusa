@@ -1,0 +1,18 @@
+---
+syntax: bash
+tags: [ networking, brute ]
+---
+# Brute force SSH
+medusa -e ns -M ssh -U /usr/share/wordlists/seclists/Passwords/UserPassCombo-Jay.txt -P /usr/share/wordlists/seclists/Passwords/UserPassCombo-Jay.txt -h HOST -T4 -t4 | tee -a ssh-brute.log
+
+# Brute force SMB
+medusa -e ns -M smbnt -h HOST -U <user-file> -P <password-file> -m GROUP:DOMAIN | tee -a smb-brute.log
+
+# Brute force MySQL
+medusa -e ns -M mysql -u root -p mysql -H <targets-file> -T4 -t4 | tee -a mysql_brute.log
+
+# Brute force MSSQL
+medusa -e ns -M mssql -u sa -p sa -H <targets-file> -T4 -t4 | tee -a mssql_brute.log
+
+# Brute force Telnet
+medusa -e ns -M telnet -C <combo-user-password-file> -H <targets-file> -T4 -t4 | tee -a telnet_brute.log

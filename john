@@ -1,0 +1,14 @@
+---
+syntax: bash
+tags: [brute]
+---
+# extract the password hash from a password protected zip file and run john with rockyou wordlist
+zip2john -o index.php backup.zip | tee backup.hash
+zcat /usr/share/wordlists/rockyou.txt.gz | john --stdin backup.hash
+
+# brute force raw md5 hash
+zcat /usr/share/wordlists/rockyou.txt.gz | john --stdin --format=Raw-MD5 hash.md5
+
+# crack the passphrase for SSH private key
+ssh2john id_rsa > id_rsa.hash
+zcat /usr/share/wordlists/rockyou.txt.gz | john --format=SSH --stdin id_rsa.hash

@@ -1,0 +1,9 @@
+---
+syntax: bash
+tags: [log, shellscript, shell]
+---
+# record shell session into a log file
+script --quiet --log-timing ~/.log/test/test.time ~/.log/test/test.log
+
+# replay a shell session
+scriptreplay --timing ~/.log/test/test.time ~/.log/test/test.log

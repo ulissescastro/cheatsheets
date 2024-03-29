@@ -1,0 +1,7 @@
+---
+syntax: bash
+tags: [scan, wordpress]
+---
+# default wpscan with api token
+wpscan --url http://<IP>/ --api-token <api-token> --output wpscan.log
+

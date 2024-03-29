@@ -2,13 +2,13 @@
 syntax: bash
 tags: [ networking ]
 ---
-# Print top 200 most common TCP ports
+# top 200 most common TCP ports
 awk '{print $3" "$2}' /usr/share/nmap/nmap-services | sort -nr | grep -v tcp | cut -f1 -d\/ | awk '{print $2}' | head -n200 | xargs | tr " " ","
 
-# Print top 75 most common UDP ports
+# top 75 most common UDP ports
 awk '{print $3" "$2}' /usr/share/nmap/nmap-services | sort -nr | grep -v udp | cut -f1 -d\/ | awk '{print $2}' | head -n75 | xargs | tr " " ","
 
-### Nmap Scripting Engine Categories
+### scripting engine categories
 The most common Nmap scripting engine categories:
 - auth: Utilize credentials or bypass authentication on target hosts.
 - broadcast: Discover hosts not included on command line by broadcasting on local network.
@@ -25,7 +25,7 @@ The most common Nmap scripting engine categories:
 - version: Measure the version of software or protocols on the target hosts.
 - vul: Measure whether target systems have a known vulnerability.
 
-# Print all nmap scripts, followed by short description, and categories that it belongs (depends on "xmlstarlet")
+# print all nmap scripts, followed by short description, and categories that it belongs (depends on "xmlstarlet")
 NL=$'\n'; nmap --script-help all -oX - | xmlstarlet sel -T -t -m nse-scripts/script -o $'[' -v "substring-before(substring-after(@filename,'/scripts/'),'.nse')" -o $'] ' -v "substring-before(description,'$NL')" -o $'... { ' -m categories/category -v . -o ' ' -b -o $'}' -n-
 [...]
 [firewall-bypass] Detects a vulnerability in netfilter and other firewalls that use helpers to... { vuln intrusive }
@@ -35,7 +35,7 @@ NL=$'\n'; nmap --script-help all -oX - | xmlstarlet sel -T -t -m nse-scripts/scr
 [broadcast-listener] Sniffs the network for incoming broadcast communication and... { broadcast safe }
 [...]
 
-# Use some script examples...
+# script usage examples...
 nmap --script default,safe
 nmap --script default,banner,/home/user/customscripts
 nmap --script 'http-*'
@@ -43,6 +43,6 @@ nmap --script "not intrusive"
 nmap --script "default and safe"
 nmap --script "(default or safe or intrusive) and not http-*"
 
-# Scan for the heartbleed
+# scan for the heartbleed
 nmap -T5 --min-parallelism=50 -n --script "ssl-heartbleed" -pT:443 127.0.0.1
 

